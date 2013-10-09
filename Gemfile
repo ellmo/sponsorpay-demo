@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'haml-rails'
 gem 'haml_coffee_assets'
 gem 'jquery-rails'

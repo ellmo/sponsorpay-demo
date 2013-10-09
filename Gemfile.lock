@@ -49,6 +49,8 @@ GEM
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -152,6 +154,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 3.2.1)
   faraday
+  faraday_middleware
   haml-rails
   haml_coffee_assets
   jquery-rails
