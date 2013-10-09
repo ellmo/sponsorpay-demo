@@ -1,0 +1,15 @@
+*.svg
+*.swp
+*~
+.*.sw?
+.DS_Store
+.rvmrc
+.sass-cache/
+/.bundle
+log/
+log/*
+public/assets/*
+tmp/
+.rbenv-gemsets
+.ruby-version
+*.sublime-*
