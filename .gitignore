@@ -13,3 +13,5 @@ tmp/
 .rbenv-gemsets
 .ruby-version
 *.sublime-*
+
+config/secret.yml
