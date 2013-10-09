@@ -1,6 +1,6 @@
 defaults: &defaults
+  api_url: "http://api.sponsorpay.com"
   appid: 157
-  format: json
   ip: 109.235.143.113
   locale: de
   offer_types: 112
