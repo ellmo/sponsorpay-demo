@@ -3,20 +3,7 @@ class ApiClient
   include Singleton
 
   def get_offers(user_id, pub0=nil, page=nil)
-    params = {
-      appid: ApiSettings[:appid],
-      device_id: ApiSecret[:device_id],
-      ip: ApiSettings[:ip],
-      locale: ApiSettings[:locale],
-      offer_types: ApiSettings[:offer_types],
-      page: page,
-      pub0: pub0,
-      timestamp: Time.now.getutc.to_i,
-      uid: user_id
-    }
-    params.delete(:page) unless page
-    params.delete(:pub0) unless pub0
-
+    params = prepare_params uid: user_id, pub0: pub0, page: page
     params.merge!({hashkey: generate_hash_key(params)})
 
     connection.get '/feed/v1/offers.json' do |req|
@@ -37,6 +24,25 @@ class ApiClient
       faraday.response :logger
       faraday.use Faraday::Adapter::NetHttp
     end
+  end
+
+  def prepare_params(opts)
+    params = {
+      appid: ApiSettings[:appid],
+      device_id: ApiSecret[:device_id],
+      ip: ApiSettings[:ip],
+      locale: ApiSettings[:locale],
+      offer_types: ApiSettings[:offer_types],
+      timestamp: Time.now.getutc.to_i,
+    }
+    params.merge!(opts)
+    params.reject! {|k,v| v.nil?}
+
+    exit_params = {}
+    params.sort.each do |p|
+      exit_params[p[0]] = p[1]
+    end
+    return exit_params
   end
 
   def generate_hash_key(params)
