@@ -8,5 +8,12 @@ defaults: &defaults
 development:
   <<: *defaults
 
+test:
+  <<: *defaults
+  ip: 212.45.111.17
+
+#===---
+
 production:
   <<: *defaults
+
