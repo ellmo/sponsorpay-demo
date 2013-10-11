@@ -5,13 +5,15 @@
 .DS_Store
 .rvmrc
 .sass-cache/
+.rbenv-gemsets
+.ruby-version
+
 /.bundle
 log/
 log/*
 public/assets/*
 tmp/
-.rbenv-gemsets
-.ruby-version
+db/*.sqlite3
 *.sublime-*
 
 config/secret.yml
