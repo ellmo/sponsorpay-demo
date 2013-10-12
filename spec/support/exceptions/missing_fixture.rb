@@ -1,0 +1,1 @@
+class MissingFixture < Exception; end
