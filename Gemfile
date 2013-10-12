@@ -21,6 +21,7 @@ end
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'mocha', require: false
 end
 
 group :development do
