@@ -29,8 +29,7 @@ class ApiClient
       faraday.use FaradayMiddleware::ParseJson
       faraday.use Faraday::Request::UrlEncoded
       faraday.use Faraday::Response::RaiseError
-      # faraday.use Faraday::Response::Logger if (Rails.env.development? || Rails.env.test?)
-      faraday.response :logger
+      faraday.use Faraday::Response::Logger if (Rails.env.development? || Rails.env.test?)
       faraday.use Faraday::Adapter::NetHttp
     end
   end
