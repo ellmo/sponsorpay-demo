@@ -6,12 +6,12 @@ def api_response_double(type=:no_content)
   end
   mocked_response = double('api_response')
   mocked_response.stubs(:body).returns yaml[:body]
-  mocked_response.stubs(:status).returns yaml[:status]
-  mocked_response.stubs(:headers).returns yaml[:headers]
+  mocked_response.stubs(:status).returns yaml[:status] if yaml.has_key?(:status)
+  mocked_response.stubs(:headers).returns yaml[:headers] if yaml.has_key?(:headers)
   return mocked_response
 end
 
-def stub_api_client
+def stub_api_client(response=:no_content)
   client = ApiClient.instance
-  client.stubs(:get_offers).returns api_response_double
+  client.stubs(:get_offers).returns api_response_double(response)
 end

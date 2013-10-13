@@ -1,0 +1,20 @@
+status: 200
+body:
+  offers:
+    - title: 'title1'
+      payout: 35
+      thumbnail:
+        lowres: ''
+    - title: 'title2'
+      payout: 60
+      thumbnail:
+        lowres: ''
+    - title: 'title3'
+      payout: 120
+      thumbnail:
+        lowres: ''
+    - title: 'title4'
+      payout: 80
+      thumbnail:
+        lowres: ''
+

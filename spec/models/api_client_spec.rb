@@ -55,21 +55,40 @@ describe ApiClient do
 
   context 'get_offers' do
 
-    before do
-      stub_api_client
+    context 'when getting NO_CONTENT' do
+      before do
+        stub_api_client
+      end
+
+      context 'when getting offers' do
+        it "returns the api response double" do
+          response = apic.get_offers('player1')
+          response.body.should_not be_nil
+          response.status.should_not be_nil
+          response.headers.should_not be_nil
+
+          response.body[:code].should eq 'NO_CONTENT'
+          response.body[:count].should eq 0
+          response.body[:pages].should eq 0
+        end
+      end
     end
 
     context 'when getting offers' do
-      it "returns the api response double" do
-        response = apic.get_offers('player1')
-        response.body.should_not be_nil
-        response.status.should_not be_nil
-        response.headers.should_not be_nil
+      before do
+        stub_api_client(:offers)
+      end
 
-        response.body[:code].should eq 'NO_CONTENT'
-        response.body[:count].should eq 0
-        response.body[:pages].should eq 0
+      context 'when getting offers' do
+        it "returns the api response double" do
+          response = apic.get_offers('player1')
+          response.body.should_not be_nil
+          response.status.should_not be_nil
+
+          response.body[:offers].size.should eq 4
+        end
       end
     end
+
   end
 end
