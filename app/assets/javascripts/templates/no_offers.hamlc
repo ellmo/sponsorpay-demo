@@ -1,4 +1,7 @@
-- if @error
-  .error= @error
-.no-offers
-  No offers.
+.response
+  - if @error
+    .error= @error
+  - if @notice
+    .notice= @notice
+  .no-offers
+    No offers.

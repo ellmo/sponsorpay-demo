@@ -1,5 +1,6 @@
-.offers
-  - _.each @offers, (o) ->
-    .title= o.title
-    .payout= o.payout
-    .thumbnail= o.thumbnail
+.response
+  .offers
+    - _.each @offers, (o) ->
+      .title= o.title
+      .payout= o.payout
+      .thumbnail= o.thumbnail

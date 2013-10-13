@@ -15,6 +15,9 @@ class Application.views.ApiClient
         $('#response').html JST['offers'](offers: data.offers)
       req.fail (jqXHR, result) =>
         data = JSON.parse jqXHR.responseText
-        $('#response').html JST['no_offers'](error: data.message)
-
+        debugger
+        if jqXHR.status == 200
+          $('#response').html JST['no_offers'](notice: data.message)
+        else
+          $('#response').html JST['no_offers'](error: data.message)
 
