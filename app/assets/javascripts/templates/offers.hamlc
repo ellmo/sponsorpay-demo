@@ -1,6 +1,7 @@
 .response
-  .offers
-    - _.each @offers, (o) ->
+  - _.each @offers, (o) ->
+    .offers
       .title= o.title
       .payout= o.payout
-      .thumbnail= o.thumbnail
+      .thumbnail
+        %img{src: o.thumbnail.lowres}
