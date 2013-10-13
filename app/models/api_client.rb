@@ -19,12 +19,7 @@ class ApiClient
   def handle_exception(method, params, &block)
     yield
   rescue Faraday::Error::ResourceNotFound, Faraday::Error::ClientError, Faraday::Error::ConnectionFailed => e
-    Rails.logger.error "\nApiClient encountered a:\n" +
-    "--- #{e.to_s}\n" +
-    "while performing\n" +
-    "--- #{method}\n" +
-    "with the following params:\n" +
-    "#{params.to_yaml}\n"
+    log_error(e, method, params)
     return e.response
   end
 
@@ -61,5 +56,14 @@ class ApiClient
 
   def generate_hash_key(params)
     Digest::SHA1.hexdigest(params.to_query + "&" + ApiSecret[:api_key])
+  end
+
+  def log_error(e, method, params)
+    Rails.logger.error "\nApiClient encountered a:\n" +
+    "--- #{e.to_s}\n" +
+    "while performing\n" +
+    "--- #{method}\n" +
+    "with the following params:\n" +
+    "#{params.to_yaml}\n"
   end
 end

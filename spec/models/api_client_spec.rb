@@ -54,7 +54,6 @@ describe ApiClient do
   end
 
   context 'get_offers' do
-
     context 'when getting NO_CONTENT' do
       before do
         stub_api_client
@@ -89,6 +88,13 @@ describe ApiClient do
         end
       end
     end
-
   end
+
+  context 'receives faraday error' do
+    it 'catches the exception' do
+      apic.get_offers('player1')
+      ApiClient.any_instance.expects(:log_error).once
+    end
+  end
+
 end

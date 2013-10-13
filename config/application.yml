@@ -1,5 +1,4 @@
 defaults: &defaults
-  api_url: "http://api.sponsorpay.com"
   appid: 157
   ip: 109.235.143.113
   locale: de
@@ -7,9 +6,11 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  api_url: "http://api.sponsorpay.com"
 
 test:
   <<: *defaults
+  api_url: "http://example.testapi"
   ip: 212.45.111.17
 
 #===---
