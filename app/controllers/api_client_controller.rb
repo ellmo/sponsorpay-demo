@@ -1,4 +1,5 @@
 class ApiClientController < ApplicationController
+
   def show; end
 
   def get_offers
@@ -7,8 +8,9 @@ class ApiClientController < ApplicationController
         @client ||= ApiClient.instance
         params.reject! {|k,v| v.blank?}
         response = @client.get_offers(params[:uid], params[:pub0], params[:page])
-        render json: response[:body] || response.body
+        render json: response.respond_to?(:body) ? response.body : response[:body]
       end
     end
   end
+
 end
