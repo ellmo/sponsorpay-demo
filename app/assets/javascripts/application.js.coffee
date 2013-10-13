@@ -12,5 +12,7 @@
 #/
 #/= require jquery
 #/= require jquery_ujs
+#/= require hamlcoffee
+#/= require_tree ./templates
 #/= require initializer
 #/= require_tree .
