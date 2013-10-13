@@ -6,13 +6,27 @@ class ApiClient
     params = prepare_params uid: user_id, pub0: pub0, page: page
     params.merge!({hashkey: generate_hash_key(params)})
 
-    connection.get '/feed/v1/offers.json' do |req|
-      req.headers['Content-Type'] = 'application/json'
-      req.params = params
+    handle_exception 'get_offers', params do
+      connection.get '/feed/v1/offers.json' do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.params = params
+      end
     end
   end
 
   private
+
+  def handle_exception(method, params, &block)
+    yield
+  rescue Faraday::Error::ResourceNotFound, Faraday::Error::ClientError, Faraday::Error::ConnectionFailed => e
+    Rails.logger.error "\nApiClient encountered a:\n" +
+    "--- #{e.to_s}\n" +
+    "while performing\n" +
+    "--- #{method}\n" +
+    "with the following params:\n" +
+    "#{params.to_yaml}\n"
+    return e.response
+  end
 
   def connection
     @connection ||= Faraday.new(:url => ApiSettings[:api_url]) do |faraday|
